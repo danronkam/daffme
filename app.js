@@ -18,3 +18,77 @@ app.get("/status", (req, res) => {
 
     res.send(status);
 });
+
+app.get("/about", (req, res) => { // elevator pitch
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/contact", (req, res) => { // where to contact me / follow online
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/socials", (req, res) => { //  follow online
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/work", (req, res) => { 
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/projects", (req, res) => {
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/bar", (req, res) => {
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+
+app.get("/education", (req, res) => {
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/skills", (req, res) => {
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
+app.get("/hobbies", (req, res) => {
+    const status = {
+        "Status": "(🖒^^)"
+    };
+
+    res.send(status);
+});
+
