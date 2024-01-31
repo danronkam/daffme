@@ -11,7 +11,7 @@ app.listen(PORT, () => {
     console.log("Hamster Running on PORT:", PORT);
 });
 
-app.get("/staus", (req, res) => {
+app.get("/status", (req, res) => {
     const status = {
         "Status": "(🖒^^)"
     };
