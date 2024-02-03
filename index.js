@@ -1,12 +1,9 @@
 require('dotenv').config();
 
 const routes = require('./routes/routes')
-const express = require('express');
 const mongoose = require('mongoose');
 const mongoConn = process.env.ATLAS_URI;
-const router = express.Router();
 
-module.exports = router;
 
 mongoose.connect(mongoConn);
 
