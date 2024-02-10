@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Manager</title>
+  <style>
+    /* Add your CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Resume Manager</h1>
+  
+  <!-- Form to add a new resume -->
+  <h2>Add New Resume</h2>
+  <form id="addResumeForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+    
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required><br>
+    
+    <label for="summary">Summary:</label><br>
+    <textarea id="summary" name="summary" rows="4" cols="50" required></textarea><br>
+    
+    <button type="submit">Add Resume</button>
+  </form>
+
+  <!-- Container to display all resumes -->
+  <h2>All Resumes</h2>
+  <div id="resumesContainer"></div>
+
+  <script>
+    // JavaScript code to interact with the API
+
+    // Function to fetch all resumes from the API and display them
+    async function fetchAndDisplayResumes() {
+      const response = await fetch('/resumes');
+      const data = await response.json();
+      const resumesContainer = document.getElementById('resumesContainer');
+      resumesContainer.innerHTML = ''; // Clear previous content
+
+      data.forEach(resume => {
+        const resumeDiv = document.createElement('div');
+        resumeDiv.innerHTML = `
+          <h3>${resume.name}</h3>
+          <p><strong>Email:</strong> ${resume.email}</p>
+          <p><strong>Phone:</strong> ${resume.phone}</p>
+          <p><strong>Summary:</strong> ${resume.summary}</p>
+          <!-- Add more fields as needed -->
+        `;
+        resumesContainer.appendChild(resumeDiv);
+      });
+    }
+
+    // Function to handle form submission to add a new resume
+    document.getElementById('addResumeForm').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+      const formData = new FormData(event.target);
+      const resumeData = Object.fromEntries(formData.entries());
+      
+      try {
+        const response = await fetch('/resumes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(resumeData)
+        });
+        
+        if (response.ok) {
+          // Resume added successfully, fetch and display all resumes again
+          await fetchAndDisplayResumes();
+          event.target.reset(); // Clear the form
+        } else {
+          // Handle error case
+          console.error('Failed to add resume');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+
+    // Fetch and display resumes when the page loads
+    window.addEventListener('load', fetchAndDisplayResumes);
+  </script>
+</body>
+</html>
