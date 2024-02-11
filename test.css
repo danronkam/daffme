@@ -1,6 +1,4 @@
-<!-- CSS styles -->
-<style>
-  /* Modal styles */
+
   .modal {
     display: none;
     position: fixed;
@@ -35,6 +33,3 @@
     cursor: pointer;
   }
 
-  /* Other styles */
-  /* Add your custom styles here */
-</style>
