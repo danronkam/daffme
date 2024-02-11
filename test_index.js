@@ -127,3 +127,27 @@ app.delete('/resumes/:id', getResume, async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+<button onclick="deleteResume('${resume._id}')">Delete</button>
+
+<script>
+  // Function to delete a resume
+  async function deleteResume(resumeId) {
+    if (confirm('Are you sure you want to delete this resume?')) {
+      try {
+        const response = await fetch(`/resumes/${resumeId}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          // Resume deleted successfully, fetch resumes again
+          await fetchAndDisplayResumes();
+        } else {
+          console.error('Failed to delete resume');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  }
+</script>
